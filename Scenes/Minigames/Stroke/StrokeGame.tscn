@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3 uid="uid://kvuh2f6o84lw"]
+
+[ext_resource type="PackedScene" uid="uid://byucawqrk6gdf" path="res://Scenes/UI/QTE/QTECircle.tscn" id="1_811dc"]
+[ext_resource type="Script" uid="uid://bgklvs8ho2j0x" path="res://Scenes/Minigames/Stroke/StrokeGame.gd" id="1_uguan"]
+
+[node name="StrokeGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_uguan")
+
+[node name="Cat" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Hand" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QteCircle" parent="." instance=ExtResource("1_811dc")]
+layout_mode = 1
+
+[node name="UI" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HeartLabel" type="Label" parent="UI"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+layout_mode = 2
+
+[node name="HelpLabel" type="Label" parent="UI"]
+layout_mode = 2

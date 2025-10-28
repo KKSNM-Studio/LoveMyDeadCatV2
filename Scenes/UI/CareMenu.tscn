@@ -1,0 +1,62 @@
+[gd_scene load_steps=4 format=3 uid="uid://cro7q75sce516"]
+
+[ext_resource type="Script" uid="uid://cba3fkhuk4ob7" path="res://Scenes/UI/CareMenu.gd" id="1_35vge"]
+[ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="2_jwnnh"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jwnnh"]
+
+[node name="CareMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_35vge")
+
+[node name="CatArea" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CatSprite" type="TextureRect" parent="CatArea"]
+layout_mode = 2
+
+[node name="ReactionSprite" type="TextureRect" parent="CatArea"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 85.0
+offset_bottom = 171.0
+
+[node name="FeedButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Feed"
+
+[node name="ShowerButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Shower"
+
+[node name="StrokeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Stroke"
+
+[node name="FixWoundButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "FixWound"
+
+[node name="BackButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Back"
+
+[node name="BG" type="TextureRect" parent="."]
+z_index = -1
+material = SubResource("CanvasItemMaterial_jwnnh")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -927.0
+offset_top = -528.0
+offset_right = 993.0
+offset_bottom = 552.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_jwnnh")

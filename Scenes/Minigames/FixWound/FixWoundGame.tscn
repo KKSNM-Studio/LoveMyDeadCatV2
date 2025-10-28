@@ -1,0 +1,85 @@
+[gd_scene load_steps=3 format=3 uid="uid://04trwrm27qnj"]
+
+[ext_resource type="Script" uid="uid://dqogq2ech2g38" path="res://Scenes/Minigames/FixWound/FixWoundGame.gd" id="1_l3l2x"]
+[ext_resource type="PackedScene" uid="uid://byucawqrk6gdf" path="res://Scenes/UI/QTE/QTECircle.tscn" id="2_05gom"]
+
+[node name="FixWouldGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_l3l2x")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Belly" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="NextButton" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="QteCircle" parent="." instance=ExtResource("2_05gom")]
+visible = false
+layout_mode = 1
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+
+[node name="WouldArea" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stitch1" type="TextureRect" parent="WouldArea"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stitch2" type="TextureRect" parent="WouldArea"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Stitch3" type="TextureRect" parent="WouldArea"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Fix the wound..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Organs" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Organ1" type="TextureRect" parent="Organs"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Organ3" type="TextureRect" parent="Organs"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Organ2" type="TextureRect" parent="Organs"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Organ4" type="TextureRect" parent="Organs"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

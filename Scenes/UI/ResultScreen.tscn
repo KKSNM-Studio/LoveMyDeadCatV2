@@ -1,0 +1,30 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6505hid8oipn"]
+
+[ext_resource type="Script" uid="uid://fym8vnv27mol" path="res://Scenes/UI/ResultScreen.gd" id="1_tbxvs"]
+
+[node name="ResultScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tbxvs")
+
+[node name="PanelBG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ContinueButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="ImageFrame" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="FlavourText" type="Label" parent="VBoxContainer"]
+layout_mode = 2

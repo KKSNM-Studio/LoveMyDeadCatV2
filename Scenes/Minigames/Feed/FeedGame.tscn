@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://beme3fanm3mgh"]
+
+[ext_resource type="Script" uid="uid://bpfdwlkkdmo0c" path="res://Scenes/Minigames/Feed/FeedGame.gd" id="1_63fq1"]
+[ext_resource type="PackedScene" uid="uid://byucawqrk6gdf" path="res://Scenes/UI/QTE/QTECircle.tscn" id="2_8goqq"]
+
+[node name="FeedGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_63fq1")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="QteCircle" parent="." instance=ExtResource("2_8goqq")]
+layout_mode = 1
+
+[node name="UI" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 77.0
+grow_horizontal = 0
+
+[node name="HeartsLabel" type="Label" parent="UI"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="UI"]
+layout_mode = 2
+
+[node name="HelpLabel" type="Label" parent="UI"]
+layout_mode = 2

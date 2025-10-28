@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://comq2w6peman3"]
+
+[ext_resource type="Script" uid="uid://qgbbeobwyolg" path="res://Scenes/UI/NotePopup.gd" id="1_7xbx6"]
+
+[node name="NotePopup" type="PopupPanel"]
+oversampling_override = 1.0
+size = Vector2i(400, 120)
+visible = true
+script = ExtResource("1_7xbx6")
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -196.0
+offset_top = -56.0
+offset_right = 196.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

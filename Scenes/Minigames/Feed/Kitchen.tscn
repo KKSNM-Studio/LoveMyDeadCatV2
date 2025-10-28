@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cbvdap3l3xjh"]
+
+[ext_resource type="Script" uid="uid://bbaglymbpnqmb" path="res://Scenes/Minigames/Feed/Kitchen.gd" id="1_57l1v"]
+[ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="2_3mble"]
+
+[node name="Kitchen" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_57l1v")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_3mble")
+
+[node name="FoodPack" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 972.0
+offset_top = 450.0
+offset_right = 1096.0
+offset_bottom = 565.0
+
+[node name="RawMeat" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = 1330.0
+offset_top = 455.0
+offset_right = 1450.0
+offset_bottom = 559.0
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = -2.0
+offset_top = 5.0
+offset_right = 148.0
+offset_bottom = 68.0
+text = "Back"

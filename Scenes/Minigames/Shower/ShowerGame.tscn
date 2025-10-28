@@ -1,0 +1,98 @@
+[gd_scene load_steps=7 format=3 uid="uid://dcmgr2vyee8qo"]
+
+[ext_resource type="Script" uid="uid://bjdxtv7ey2xpy" path="res://Scenes/Minigames/Shower/ShowerGame.gd" id="1_pax2d"]
+[ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="2_7sntp"]
+[ext_resource type="Texture2D" uid="uid://hhaettdp1laa" path="res://Assets/Art/Cat/CatLikeBlood[8x1].png" id="3_wbybd"]
+
+[sub_resource type="Curve" id="Curve_7sntp"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 5.7892456), 0.0, -1.2895223, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_wbybd"]
+_limits = [0.0, 100.0, 0.0, 1.0]
+_data = [Vector2(0, 2.5406036), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7sntp"]
+radius = 98.1835
+
+[node name="ShowerGame" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_pax2d")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_7sntp")
+
+[node name="Cat" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="AnimatedSprite2D" type="Sprite2D" parent="Cat"]
+position = Vector2(562.00006, 686)
+scale = Vector2(0.22054794, 0.2085228)
+texture = ExtResource("3_wbybd")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Cat/AnimatedSprite2D"]
+
+[node name="ToolsPanel" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ShowerHead" type="Button" parent="ToolsPanel"]
+layout_mode = 2
+
+[node name="Soap" type="Button" parent="ToolsPanel"]
+layout_mode = 2
+
+[node name="Towel" type="Button" parent="ToolsPanel"]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="WaterParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 0.4
+one_shot = true
+speed_scale = 2.5
+direction = Vector2(90, 0)
+spread = 20.0
+gravity = Vector2(0, 900)
+initial_velocity_min = 250.05
+initial_velocity_max = 260.75
+damping_curve = SubResource("Curve_7sntp")
+angle_min = 10.5
+angle_max = 10.5
+scale_amount_min = 0.3
+color = Color(0.8498468, 1.0363891, 1.1996135, 1)
+
+[node name="SoapParticles" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 40
+lifetime = 0.61
+one_shot = true
+spread = 60.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+damping_curve = SubResource("Curve_wbybd")
+scale_amount_min = 0.4
+color = Color(1.2363764, 1.2363764, 1.2363764, 1)
+
+[node name="SoapArea" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SoapArea"]
+position = Vector2(567, 696)
+shape = SubResource("CircleShape2D_7sntp")
