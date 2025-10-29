@@ -28,7 +28,6 @@ func _ready():
 	if qte.has_signal("qte_completed"):
 		qte.connect("qte_completed", _on_qte_feedback)
 
-	c.minigame_finished.connect(_on_feed_done)
 	c.setup(qte, "feed", mul)
 
 func _update_ui():
@@ -46,10 +45,3 @@ func _on_qte_feedback(result, _qte_score):
 		"danger":
 			help_label.text = "Miss!"
 	_update_ui()
-
-func _on_feed_done(payload):
-	# ส่งผล Feed เข้า Global
-	Global.set_minigame_result("feed", score, Global.hearts)
-	Global.apply_minigame_score("feed", score)
-
-	get_tree().change_scene_to_file("res://Scenes/UI/ResultScreen.tscn")
