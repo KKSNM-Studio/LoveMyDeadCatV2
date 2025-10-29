@@ -1,5 +1,7 @@
 # res://Scripts/MinigameController.gd
 extends Node
+signal minigame_finished(payload)
+
 
 const MAX_ROUNDS := 3
 var current_round := 0
@@ -59,6 +61,12 @@ func _end_minigame():
 	# handoff to Global
 	Global.set_minigame_result(activity_name, score, Global.hearts)
 	Global.apply_minigame_score(activity_name, score)
+	# emit signal to notify parent scene
+	emit_signal("minigame_finished", {
+		"activity": activity_name,
+		"score": score,
+		"hearts": Global.hearts
+		})
 
 	# go to Result
 	get_tree().change_scene_to_file("res://Scenes/UI/ResultScreen.tscn")
