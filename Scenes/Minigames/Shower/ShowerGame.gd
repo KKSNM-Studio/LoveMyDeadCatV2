@@ -8,9 +8,9 @@ var current_tool: String = ""   # "shower" | "soap" | "towel"
 # ---------- Node refs ----------
 @onready var cat: Control          = $Cat
 @onready var status_label: Label   = $StatusLabel
-@onready var shower_button: Button = $ToolsPanel/ShowerHead
-@onready var soap_button: Button   = $ToolsPanel/Soap
-@onready var towel_button: Button  = $ToolsPanel/Towel
+@onready var shower_button: TextureButton = $ToolsPanel/ShowerHead
+@onready var soap_button: TextureButton  = $ToolsPanel/Soap
+@onready var towel_button: TextureButton  = $ToolsPanel/Towel
 @onready var water_particles       = $WaterParticles    # CPUParticles2D
 @onready var soap_particles        = $SoapParticles     # CPUParticles2D
 @onready var soap_area: Area2D     = $SoapArea          # สำหรับต่อยอด Area ตรวจสบู่ติดตัวแมว
@@ -41,19 +41,19 @@ func _connect_buttons() -> void:
 
 func _select_shower() -> void:
 	current_tool = "shower"
-	CursorManager.set_tool_cursor("res://Assets/Tools/shower.png")
+	CursorManager.set_tool_cursor("res://Assets/Art/Minigames/IMG_9226.PNG")
 	status_label.text = "Using Shower Head"
 	print("🧰 TOOL → ShowerHead")
 
 func _select_soap() -> void:
 	current_tool = "soap"
-	CursorManager.set_tool_cursor("res://Assets/Tools/soap.png")
+	CursorManager.set_tool_cursor("res://Assets/Art/Minigames/IMG_9227.PNG")
 	status_label.text = "Using Soap"
 	print("🧰 TOOL → Soap")
 
 func _select_towel() -> void:
 	current_tool = "towel"
-	CursorManager.set_tool_cursor("res://Assets/Tools/towel.png")
+	CursorManager.set_tool_cursor("res://Assets/Art/Minigames/IMG_9225.PNG")
 	status_label.text = "Using Towel"
 	print("🧰 TOOL → Towel")
 

@@ -1,62 +1,91 @@
-[gd_scene load_steps=4 format=3 uid="uid://cro7q75sce516"]
+[gd_scene load_steps=9 format=3 uid="uid://cro7q75sce516"]
 
 [ext_resource type="Script" uid="uid://cba3fkhuk4ob7" path="res://Scenes/UI/CareMenu.gd" id="1_35vge"]
+[ext_resource type="Texture2D" uid="uid://g1gtlfl1p21c" path="res://Assets/Art/Minigames/IMG_9160.PNG" id="2_6dk41"]
 [ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="2_jwnnh"]
+[ext_resource type="Texture2D" uid="uid://38nndyoidvtx" path="res://Assets/Art/Minigames/IMG_9162.PNG" id="3_vr1a7"]
+[ext_resource type="Texture2D" uid="uid://degvqy6f20ewg" path="res://Assets/Art/Minigames/IMG_9159.PNG" id="4_eedlr"]
+[ext_resource type="Texture2D" uid="uid://c15powso1xaf3" path="res://Assets/Art/Minigames/IMG_9161.PNG" id="5_hky6t"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_jwnnh"]
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_6dk41"]
+blend_mode = 4
+
 [node name="CareMenu" type="Control"]
 layout_mode = 3
-anchors_preset = 0
 script = ExtResource("1_35vge")
 
-[node name="CatArea" type="VBoxContainer" parent="."]
-layout_mode = 0
+[node name="CatPanel" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="CatSprite" type="TextureRect" parent="CatArea"]
-layout_mode = 2
+[node name="CatSprite" type="Sprite2D" parent="CatPanel"]
+position = Vector2(600, 600)
+scale = Vector2(0.5, 0.5)
+centered = false
 
-[node name="ReactionSprite" type="TextureRect" parent="CatArea"]
-layout_mode = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="ReactionSprite" type="TextureRect" parent="CatPanel"]
 layout_mode = 0
-offset_right = 85.0
-offset_bottom = 171.0
+offset_top = 4.0
+offset_right = 40.0
+offset_bottom = 4.0
 
-[node name="FeedButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-text = "Feed"
+[node name="ButtonArea" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 1507.0
+offset_top = 157.0
+offset_right = 3555.0
+offset_bottom = 8361.0
+grow_horizontal = 2
+scale = Vector2(0.1, 0.1)
+mouse_filter = 0
 
-[node name="ShowerButton" type="Button" parent="VBoxContainer"]
+[node name="FeedButton" type="TextureButton" parent="ButtonArea"]
+z_index = 1
 layout_mode = 2
-text = "Shower"
+texture_normal = ExtResource("2_6dk41")
 
-[node name="StrokeButton" type="Button" parent="VBoxContainer"]
+[node name="ShowerButton" type="TextureButton" parent="ButtonArea"]
 layout_mode = 2
-text = "Stroke"
+texture_normal = ExtResource("3_vr1a7")
 
-[node name="FixWoundButton" type="Button" parent="VBoxContainer"]
+[node name="StrokeButton" type="TextureButton" parent="ButtonArea"]
 layout_mode = 2
-text = "FixWound"
+texture_normal = ExtResource("4_eedlr")
 
-[node name="BackButton" type="Button" parent="VBoxContainer"]
+[node name="FixWoundButton" type="TextureButton" parent="ButtonArea"]
 layout_mode = 2
-text = "Back"
+texture_normal = ExtResource("5_hky6t")
 
 [node name="BG" type="TextureRect" parent="."]
-z_index = -1
+z_index = -3
 material = SubResource("CanvasItemMaterial_jwnnh")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -927.0
-offset_top = -528.0
-offset_right = 993.0
-offset_bottom = 552.0
+offset_left = -1.0
+offset_top = -4.0
+offset_right = 1919.0
+offset_bottom = 1076.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_jwnnh")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="BG"]
+material = SubResource("CanvasItemMaterial_6dk41")
+position = Vector2(1601.7965, 792.17816)
+color = Color(0.72480685, 0.7895826, 1, 1)
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 50.0
+offset_right = 196.0
+offset_bottom = 81.0
+text = "Back"

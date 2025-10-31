@@ -4,6 +4,13 @@ Global Game State System (Core)
 - Affinity / Injury / Hearts / Days
 - Daily Preference (random per day)
 - Minigame Result plumbing
+
+(อัปเดต)
+- START_AFFINITY = 50
+- ENDING_THRESHOLD = 70
+- did_shower_today (ต้องอาบน้ำทุกวัน)
+- daily_gestures (อารมณ์แมวรายวันต่อ activity)
+- decide_ending() ตัดสิน Good/Bad
 """
 
 signal affinity_changed(value)
@@ -15,123 +22,96 @@ const MAX_AFFINITY := 100
 const MIN_AFFINITY := 0
 const MAX_HEARTS := 3
 const MAX_DAYS := 3
-const GOOD_ENDING_THRESHOLD := 70
 
-const DEMON_AFFINITY_THRESHOLD := 30
-const DEMON_INJURY_THRESHOLD := 3
-const INJURY_AFFINITY_PENALTY := 5
-
-var affinity: int = 50
-var injury: int = 0
-var current_day: int = 1
-var hearts: int = MAX_HEARTS
-var cat_state: String = "normal"
-
-var daily_preference := {
+# ===== Added (ตามบรีฟ) =====
+const START_AFFINITY := 50              # ค่าเริ่มต้นความผูกพัน
+const ENDING_THRESHOLD := 70            # เกณฑ์ Good Ending
+var did_shower_today: bool = false      # ต้องอาบน้ำก่อนจบวัน
+var daily_gestures := {                 # อารมณ์แมวรายวันต่อกิจกรรม
 	"feed": "neutral",
 	"stroke": "neutral",
+	"shower": "happy",  # อาบน้ำให้ผลบวกเสมอ
 	"fix": "neutral",
-	"shower": "must"
 }
 
-var minigames_played_today: int = 0
-var last_minigame_activity: String = ""
-var last_minigame_score: int = 0
-var last_minigame_hearts_left: int = MAX_HEARTS
+# ===== Game State =====
+var affinity := START_AFFINITY
+var injury := 0
+var hearts := MAX_HEARTS
+var current_day := 1
+var minigames_played_today := 0
+var last_minigame_activity := ""
+var last_minigame_score := 0
+var cat_state := "normal"  # "normal"|"injury"|"demon" (ถ้ามีใช้)
 
 func _ready():
-	randomize_daily_preference()
-	_update_cat_state()
+	randomize()
+	_generate_daily_gestures()
 
-# ---- Affinity / Injury ----
-func add_affinity(amount: int) -> void:
-	affinity = clamp(affinity + amount, MIN_AFFINITY, MAX_AFFINITY)
+# ===== Reset / Day Flow =====
+func reset_game_state():
+	affinity = START_AFFINITY
+	injury = 0
+	hearts = MAX_HEARTS
+	current_day = 1
+	minigames_played_today = 0
+	did_shower_today = false
+	_generate_daily_gestures()
 	emit_signal("affinity_changed", affinity)
-	_update_cat_state()
-
-func remove_affinity(amount: int) -> void:
-	add_affinity(-amount)
-
-func add_injury(amount: int = 1) -> void:
-	injury += amount
 	emit_signal("injury_changed", injury)
-	_update_cat_state()
+	emit_signal("day_changed", current_day)
 
-func heal_injury(amount: int = 1) -> void:
-	injury = max(injury - amount, 0)
-	emit_signal("injury_changed", injury)
-	_update_cat_state()
-
-# ---- Hearts ----
-func reset_hearts() -> void:
+func reset_hearts():
 	hearts = MAX_HEARTS
 
 func lose_heart() -> int:
 	hearts = max(0, hearts - 1)
 	return hearts
 
-func is_out_of_hearts() -> bool:
-	return hearts <= 0
+func record_minigame_played():
+	minigames_played_today += 1
 
-# ---- Cat State ----
-func _update_cat_state() -> void:
-	var new_state := "normal"
-	if injury >= DEMON_INJURY_THRESHOLD or affinity < DEMON_AFFINITY_THRESHOLD:
-		new_state = "demon"
-	elif injury > 0:
-		new_state = "injury"
-	if new_state != cat_state:
-		cat_state = new_state
-		emit_signal("cat_state_changed", cat_state)
+func set_minigame_result(activity: String, score_band: int, hearts_left: int):
+	last_minigame_activity = activity
+	last_minigame_score = score_band
+	# สามารถเพิ่มบันทึกอื่น ๆ ได้ที่นี่
 
-func get_cat_state() -> String:
-	return cat_state
-
-# ---- Day Flow ----
-func reset_care_today() -> void:
-	minigames_played_today = 0
-
-func advance_day() -> void:
-	if injury > 0:
-		remove_affinity(injury * INJURY_AFFINITY_PENALTY)
-	reset_care_today()
+func advance_day():
 	current_day += 1
-	randomize_daily_preference()
+	minigames_played_today = 0
+	did_shower_today = false
+	reset_hearts()
+	_generate_daily_gestures()
 	emit_signal("day_changed", current_day)
 
-func is_final_day() -> bool:
-	return current_day == MAX_DAYS
+# ===== Daily gestures =====
+func _generate_daily_gestures():
+	var moods = ["happy","disliked","angry"]
+	daily_gestures = {
+		"feed": moods.pick_random(),
+		"stroke": moods.pick_random(),
+		"shower": "happy",
+		"fix": moods.pick_random(),
+	}
 
-func is_game_over() -> bool:
-	return current_day > MAX_DAYS
+# ===== Scoring =====
+func add_affinity(v: int):
+	affinity = clamp(affinity + v, MIN_AFFINITY, MAX_AFFINITY)
+	emit_signal("affinity_changed", affinity)
 
-# ---- Ending ----
-func determine_ending() -> String:
-	return "good" if affinity >= GOOD_ENDING_THRESHOLD else "bad"
+func add_injury(v: int):
+	injury = max(0, injury + v)
+	emit_signal("injury_changed", injury)
+	if injury > 0:
+		cat_state = "injury"
+		emit_signal("cat_state_changed", cat_state)
 
-# ---- Daily Preference ----
-func randomize_daily_preference() -> void:
-	var moods := ["like", "neutral", "hate"]
-	daily_preference["feed"] = moods.pick_random()
-	daily_preference["stroke"] = moods.pick_random()
-	daily_preference["fix"] = moods.pick_random()
-	daily_preference["shower"] = "must"
-
-func get_daily_preference(activity: String) -> String:
-	return daily_preference.get(activity, "neutral")
-
-# ---- QTE helper ----
-func get_perfect_zone_size() -> float:
-	return 40.0
-
-# ---- Minigame Result Plumbing ----
-func set_minigame_result(activity: String, score: int, hearts_left: int) -> void:
-	last_minigame_activity = activity
-	last_minigame_score = score
-	last_minigame_hearts_left = hearts_left
-
-func record_minigame_played() -> void:
-	minigames_played_today += 1
+func heal_injury(v: int):
+	injury = max(0, injury - v)
+	emit_signal("injury_changed", injury)
+	if injury == 0 and cat_state == "injury":
+		cat_state = "normal"
+		emit_signal("cat_state_changed", cat_state)
 
 func apply_minigame_score(activity: String, score: int) -> void:
 	match activity:
@@ -145,5 +125,17 @@ func apply_minigame_score(activity: String, score: int) -> void:
 			elif score >= 4:
 				heal_injury(1)
 		"shower":
-			add_affinity(score + 1)
+			# อาบน้ำให้ผลบวกเสมอ (กันคะแนนติดลบ)
+			add_affinity(max(0, score) + 1)
 	record_minigame_played()
+
+# ===== Shower flag =====
+func mark_shower_done():
+	did_shower_today = true
+
+# ===== Ending =====
+func decide_ending():
+	if affinity >= ENDING_THRESHOLD:
+		get_tree().change_scene_to_file("res://Scenes/Endings/GoodEnding.tscn")
+	else:
+		get_tree().change_scene_to_file("res://Scenes/Endings/BadEnding.tscn")

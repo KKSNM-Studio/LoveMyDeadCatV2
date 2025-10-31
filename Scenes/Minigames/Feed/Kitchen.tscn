@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cbvdap3l3xjh"]
+[gd_scene load_steps=5 format=3 uid="uid://cbvdap3l3xjh"]
 
 [ext_resource type="Script" uid="uid://bbaglymbpnqmb" path="res://Scenes/Minigames/Feed/Kitchen.gd" id="1_57l1v"]
-[ext_resource type="Texture2D" uid="uid://kwadobwyvlhy" path="res://Assets/Art/Backgrounds/Living_Room_BG.png" id="2_3mble"]
+[ext_resource type="Texture2D" uid="uid://d3gp1jr774v4g" path="res://Assets/Art/Backgrounds/kitchen_BG.png" id="2_rredk"]
+[ext_resource type="Texture2D" uid="uid://cln42wtkjvk4a" path="res://Assets/Art/Minigames/catfood.PNG" id="3_l25u0"]
+[ext_resource type="Texture2D" uid="uid://byhvd8kae68hs" path="res://Assets/Art/Minigames/rawmeat.PNG" id="4_3rkd1"]
 
 [node name="Kitchen" type="Control"]
 layout_mode = 3
@@ -12,21 +14,25 @@ script = ExtResource("1_57l1v")
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("2_3mble")
+texture = ExtResource("2_rredk")
 
 [node name="FoodPack" type="TextureButton" parent="."]
-layout_mode = 0
-offset_left = 972.0
-offset_top = 450.0
-offset_right = 1096.0
-offset_bottom = 565.0
+layout_mode = 1
+offset_left = 886.0
+offset_top = 461.0
+offset_right = 2934.0
+offset_bottom = 2509.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("3_l25u0")
 
 [node name="RawMeat" type="TextureButton" parent="."]
 layout_mode = 0
-offset_left = 1330.0
-offset_top = 455.0
-offset_right = 1450.0
-offset_bottom = 559.0
+offset_left = 1115.0
+offset_top = 287.0
+offset_right = 3163.0
+offset_bottom = 2335.0
+scale = Vector2(0.1, 0.1)
+texture_normal = ExtResource("4_3rkd1")
 
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 0
