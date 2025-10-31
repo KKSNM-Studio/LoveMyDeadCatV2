@@ -1,9 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://cbvdap3l3xjh"]
+[gd_scene load_steps=8 format=3 uid="uid://cbvdap3l3xjh"]
 
 [ext_resource type="Script" uid="uid://bbaglymbpnqmb" path="res://Scenes/Minigames/Feed/Kitchen.gd" id="1_57l1v"]
 [ext_resource type="Texture2D" uid="uid://d3gp1jr774v4g" path="res://Assets/Art/Backgrounds/kitchen_BG.png" id="2_rredk"]
 [ext_resource type="Texture2D" uid="uid://cln42wtkjvk4a" path="res://Assets/Art/Minigames/catfood.PNG" id="3_l25u0"]
 [ext_resource type="Texture2D" uid="uid://byhvd8kae68hs" path="res://Assets/Art/Minigames/rawmeat.PNG" id="4_3rkd1"]
+[ext_resource type="Texture2D" uid="uid://budp5uu245yj0" path="res://Assets/Art/Cat/CatStandingBlood/CatStandingBlood_0001.png" id="5_xj32y"]
+[ext_resource type="Texture2D" uid="uid://boeefikbh865k" path="res://Assets/Art/Cat/CatSleepingNormal/CatSleepingNormal_0002.png" id="6_cncjc"]
+[ext_resource type="Texture2D" uid="uid://cjdo128f1htin" path="res://Assets/Art/Cat/CatDevilBlood/CatDevilBlood_0001.png" id="7_epe0u"]
 
 [node name="Kitchen" type="Control"]
 layout_mode = 3
@@ -41,3 +44,18 @@ offset_top = 5.0
 offset_right = 148.0
 offset_bottom = 68.0
 text = "Back"
+
+[node name="CatStandingBlood0001" type="Sprite2D" parent="."]
+position = Vector2(638, 676)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("5_xj32y")
+
+[node name="CatSleepingNormal0002" type="Sprite2D" parent="."]
+position = Vector2(1194, 797)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("6_cncjc")
+
+[node name="CatDevilBlood0001" type="Sprite2D" parent="."]
+position = Vector2(117, 607)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("7_epe0u")
