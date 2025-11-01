@@ -29,3 +29,7 @@ Global="*res://Autoload/Global.gd"
 SaveManager="*res://Autoload/SaveManager.gd"
 CursorManager="*res://Autoload/CursorManager.gd"
 AudioManager="*res://Autoload/AudioManager.gd"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
