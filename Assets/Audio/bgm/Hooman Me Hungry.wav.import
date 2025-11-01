@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://5ximpn1kfp0d"
+path="res://.godot/imported/Hooman Me Hungry.wav-d12ceda23825cba5dedb185534dcd1be.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/bgm/Hooman Me Hungry.wav"
+dest_files=["res://.godot/imported/Hooman Me Hungry.wav-d12ceda23825cba5dedb185534dcd1be.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

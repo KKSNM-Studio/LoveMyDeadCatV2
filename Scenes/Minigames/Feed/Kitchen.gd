@@ -5,8 +5,6 @@ extends Control
 @onready var back_button = $BackButton
 
 func _ready():
-	food_pack.text = "Cat Food"
-	raw_meat.text = "Raw Meat (-10 Affinity)"
 	back_button.text = "Back"
 
 	food_pack.pressed.connect(_on_food_pack_pressed)

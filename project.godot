@@ -10,13 +10,26 @@ config_version=5
 
 [application]
 
-config/name="New Game Project"
+config/name="LoveMyDeadCat"
+config/description="In this game, you play as the owner of a beloved cat who passed away not long ago.
+One day, your cat mysteriously returns — but something about it has changed. Its body bears signs of decay, covered in wounds that never seem to heal.
+Despite the unsettling sight, your heart swells with joy just to see your precious companion again. You decide to care for it with all the love you have left, unaware of what the outcome might be.
+
+Each day, you’ll perform small acts of care — bathing your cat, tending to its wounds, and managing its gradual physical decline as time slowly takes its toll.
+In the end, will you be able to care for your cat until the very last moment, or will you come to accept the truth and let go?
+The choice is yours."
+config/version="0.1.0"
 run/main_scene="uid://cyjkehsdtda12"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://cjdo128f1htin"
 
 [autoload]
 
 Global="*res://Autoload/Global.gd"
 SaveManager="*res://Autoload/SaveManager.gd"
 CursorManager="*res://Autoload/CursorManager.gd"
+AudioManager="*res://Autoload/AudioManager.gd"
+
+[rendering]
+
+textures/vram_compression/import_etc2_astc=true
